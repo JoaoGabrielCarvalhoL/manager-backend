@@ -1,5 +1,7 @@
 package br.com.carv.manager.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,6 +46,7 @@ public class CategoryController {
 		categoryService.update(category);
 	}
 	
+	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public Page<Category> findAll() {
@@ -60,6 +63,12 @@ public class CategoryController {
 	@ResponseStatus(HttpStatus.OK)
 	public Category findById(@PathVariable("id") Long id) {
 		return categoryService.findById(id);
+	}
+	
+	@GetMapping("/findAll")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Category> findAllNoPageable() {
+		return categoryService.findAllNoPageable();
 	}
 
 }

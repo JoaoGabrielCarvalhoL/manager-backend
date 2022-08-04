@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "tb_product")
@@ -35,8 +35,14 @@ public class Product implements Serializable {
 	@Column(nullable = false, scale = 2, precision = 8)
 	private BigDecimal unitPrice;
 	
-	
-	@JsonManagedReference
+	/*
+	 *  @JsonManagedReference : its forward part of reference so it will apply on collection type.
+	 *	@JsonBackReference: its back part of reference.
+	 * 
+	 */
+	 
+	@JsonBackReference
+	//@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn
 	private Category category;

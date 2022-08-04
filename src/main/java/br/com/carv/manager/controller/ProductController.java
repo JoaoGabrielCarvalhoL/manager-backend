@@ -1,7 +1,10 @@
 package br.com.carv.manager.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,11 +29,13 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
+	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public void save(@RequestBody Product product ) {
 		productService.save(product);
 	}
+	
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -60,6 +65,12 @@ public class ProductController {
 	@ResponseStatus(HttpStatus.OK)
 	public Product findById(@PathVariable("id") Long id) {
 		return productService.findById(id);
+	}
+	
+	@GetMapping("/findAll")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Product> findAllNoPageable() {
+		return productService.findAllNoPageable();
 	}
 
 

@@ -1,5 +1,6 @@
 package br.com.carv.manager.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -60,6 +61,11 @@ public class ProductServiceImpl implements ProductService {
 		int size = 20;
 		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "productName"); 
 		return productRepository.findByProductName(productName, pageRequest);
+	}
+
+	@Override
+	public List<Product> findAllNoPageable() {
+		return productRepository.findAll();
 	}
 
 }

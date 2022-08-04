@@ -1,5 +1,6 @@
 package br.com.carv.manager.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -61,6 +62,11 @@ public class CategoryServiceImpl implements CategoryService {
 		int size = 10; 
 		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "description"); 
 		return categoryRepository.findByDescription(description, pageRequest);
+	}
+
+	@Override
+	public List<Category> findAllNoPageable() {
+		return categoryRepository.findAll();
 	}
 
 }

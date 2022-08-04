@@ -1,5 +1,7 @@
 package br.com.carv.manager.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.carv.manager.entity.User;
+import br.com.carv.manager.entity.dto.UserDto;
 import br.com.carv.manager.service.UserService;
 
 @RestController
@@ -44,10 +47,16 @@ public class UserController {
 		userService.update(user);
 	}
 	
-	@GetMapping
+	@GetMapping("/findAll")
 	@ResponseStatus(HttpStatus.OK)
 	public Page<User> findAll() {
 		return userService.findAll();
+	}
+	
+	@GetMapping("/findAllUser")
+	@ResponseStatus(HttpStatus.OK)
+	public List<UserDto> findAllUserDto() {
+		return userService.findAllUserDto();
 	}
 	
 	@GetMapping("/findByDescription")

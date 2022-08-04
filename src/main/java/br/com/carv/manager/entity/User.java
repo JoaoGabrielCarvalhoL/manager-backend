@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable {
@@ -23,11 +26,14 @@ public class User implements Serializable {
 	@Column(nullable = false, length = 100)
 	private String username;
 	
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 255)
 	private String password;
 	
 	@Column(nullable = false, length = 50)
 	private String email;
+	
+	@JsonInclude(Include.NON_NULL)
+	private String token;
 	
 	public User() {
 		
@@ -38,6 +44,17 @@ public class User implements Serializable {
 		this.email = email;
 	}
 	
+	
+	
+	public User(Long id, String username, String password, String email, String token) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.token = token;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -70,6 +87,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	@Override
 	public String toString() {
 		return "[User]\nUsername: " + getUsername() + " Email: " + getEmail();

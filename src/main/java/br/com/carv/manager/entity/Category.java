@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "tb_category")
@@ -28,7 +28,8 @@ public class Category implements Serializable {
     private String description;
 	
 	@OneToMany(mappedBy = "category")
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonManagedReference
 	private List<Product> products;
     
     public Category() {

@@ -1,5 +1,7 @@
 package br.com.carv.manager.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import br.com.carv.manager.entity.Category;
@@ -17,4 +19,6 @@ public interface CategoryService {
 	Category findById(Long id);
 	
 	Page<Category> findByDescription(String description);
+	
+	List<Category> findAllNoPageable();
 }

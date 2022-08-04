@@ -1,5 +1,7 @@
 package br.com.carv.manager.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import br.com.carv.manager.entity.Product;
@@ -17,4 +19,6 @@ public interface ProductService {
 	Product findById(Long id);
 
 	Page<Product> findByProductName(String productName);
+	
+	List<Product> findAllNoPageable();
 }
